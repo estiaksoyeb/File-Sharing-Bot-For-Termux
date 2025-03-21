@@ -1,4 +1,4 @@
-# File-sharing-Bot
+# File-sharing-Bot-For_Termux
 
 <p align="center">
   <a href="https://www.python.org">
@@ -22,16 +22,26 @@
   </a>  
 </p>
 
-
 Telegram Bot to store Posts and Documents and it can Access by Special Links.
 I Guess This Will Be Usefull For Many People.....😇. 
 
+---
+
+## About This Fork
+
+This is a **fork** of the original [File-Sharing-Bot](https://github.com/CodeXBotz/File-Sharing-Bot) project by [CodeXBotz](https://github.com/CodeXBotz). The primary focus of this fork is to make the bot **run on Termux** without requiring a **MongoDB URI**. Instead, this version uses **SQLite** as the local database.
+
+### Key Differences:
+- **SQLite Database**: The database code has been rewritten to use SQLite, making it easier to run locally without needing a cloud-based MongoDB setup.
+- **Termux Compatibility**: This fork is optimized for running on Termux (Android) or other local environments.
+- **No Cloud Deployment**: Due to the use of SQLite, this fork is **not suitable for cloud deployment** (e.g., Heroku, Railway, etc.). If you need cloud deployment, please use the [original project](https://github.com/CodeXBotz/File-Sharing-Bot).
+
+---
 
 ### Features
 - Fully customisable.
 - Customisable welcome & Forcesub messages.
 - More than one Posts in One Link.
-- Can be deployed on heroku directly.
 - Protect Content to Prevent Forwarding
 - Auto-Delete Files After a Configurable Time
 
@@ -42,6 +52,7 @@ These features are in the pipeline, and contributions from the community are wel
 - [x] **Channel Join Request**  
   Implement a feature that prompts users to join a specified Telegram channel before accessing the bot's functionalities.
 
+---
 
 ### How to Contribute
 1. Check the [contribution guidelines](https://github.com/CodeXBotz/File-Sharing-Bot/blob/main/CONTRIBUTING.md) for detailed instructions.  
@@ -49,43 +60,38 @@ These features are in the pipeline, and contributions from the community are wel
 3. Discuss your implementation plan with maintainers to align your contributions with project goals.  
 
 We encourage all developers to contribute ideas, report bugs, and share improvements. Together, we can make this project even better! 🚀
- 
- 
+
+---
+
 ### Setup
 
 - Add the bot to Database Channel with all permission
 - Add bot to ForceSub channel as Admin with Invite Users via Link Permission if you enabled ForceSub 
 
-##
+---
+
 ### Installation
-#### Deploy on Heroku
-**BEFORE YOU DEPLOY ON HEROKU, YOU SHOULD FORK THE REPO AND CHANGE ITS NAME TO ANYTHING ELSE**<br>
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)</br>
-<a href="https://youtu.be/LCrkRTMkmzE">
-  <img src="https://img.shields.io/badge/How%20to-Deploy-red?logo=youtube" width="147">
-</a><br>
-**Check This Tutorial Video on YouTube for any Help**<br>
-**Thanks to [Erich](https://t.me/ErichDaniken) and his [InFoTel](https://t.me/InFoTel_Group) for this Video**
 
-#### Deploy on Railway
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/1jKLr4)
+#### Deploy on Termux (Local)
+1. Install Termux from the Play Store or F-Droid.
+2. Run the following commands in Termux:
 
-#### Deploy on Koyeb
-
-The fastest way to deploy the application is to click the **Deploy to Koyeb** button below.
-
-
-[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/CodeXBotz/File-Sharing-Bot&branch=koyeb&name=filesharingbot)
-
-
-#### Deploy in your VPS
-````bash
-git clone https://github.com/CodeXBotz/File-Sharing-Bot
+```bash
+pkg update && pkg upgrade
+pkg install git python
+git clone https://github.com/YourUsername/File-Sharing-Bot
 cd File-Sharing-Bot
-pip3 install -r requirements.txt
-# <Create config.py appropriately>
+pip install -r requirements.txt
+```
+
+3. Create a `config.py` file with the required variables (see below).
+4. Run the bot:
+
+```bash
 python3 main.py
-````
+```
+
+---
 
 ### Admin Commands
 
@@ -103,6 +109,8 @@ python3 main.py
 /stats - checking your bot uptime
 ```
 
+---
+
 ### Variables
 
 * `API_HASH` Your API Hash from my.telegram.org
@@ -110,7 +118,6 @@ python3 main.py
 * `TG_BOT_TOKEN` Your bot token from @BotFather
 * `OWNER_ID` Must enter Your Telegram Id
 * `CHANNEL_ID` Your Channel ID eg:- -100xxxxxxxx
-* `DATABASE_URL` Your mongo db url
 * `ADMINS` Optional: A space separated list of user_ids of Admins, they can only create links
 * `START_MESSAGE` Optional: start message of bot, use HTML and <a href='https://github.com/codexbotz/File-Sharing-Bot/blob/main/README.md#start_message'>fillings</a>
 * `START_PIC` Optional: URL or file path of the image to be sent as the start message
@@ -120,45 +127,21 @@ python3 main.py
 * `AUTO_DELETE_TIME `  Set the time in seconds for automatic file deletion. Default is False, which disables auto-deletion.
 * `JOIN_REQUEST_ENABLED` Optional: Set to "True" to enable join request for the channel. Default is "False".
 
-### Extra Variables
+---
 
-* `AUTO_DELETE_MSG` put your custom deletion text if you want Setup Custom deletion messaeg,
-* `AUTO_DEL_SUCCESS_MSG` Set your custom success message for when the file is successfully deleted
-* `CUSTOM_CAPTION` put your Custom caption text if you want Setup Custom Caption, you can use HTML and <a href='https://github.com/CodeXBotz/File-Sharing-Bot/blob/main/README.md#custom_caption'>fillings</a> for formatting (only for documents)
-* `DISABLE_CHANNEL_BUTTON` Put True to Disable Channel Share Button, Default if False
-* `BOT_STATS_TEXT` put your custom text for stats command, use HTML and <a href='https://github.com/codexbotz/File-Sharing-Bot/blob/main/README.md#custom_stats'>fillings</a>
-* `USER_REPLY_TEXT` put your text to show when user sends any message, use HTML
-* `DATABASE_NAME` Your mongo db session name
-
-
-### Fillings
-#### START_MESSAGE | FORCE_SUB_MESSAGE
-
-* `{first}` - User first name
-* `{last}` - User last name
-* `{id}` - User ID
-* `{mention}` - Mention the user
-* `{username}` - Username
-
-#### CUSTOM_CAPTION
-
-* `{filename}` - file name of the Document
-* `{previouscaption}` - Original Caption
-
-#### CUSTOM_STATS
-
-* `{uptime}` - Bot Uptime
-
-
-## Support   
+### Support   
 Join Our [Telegram Group](https://www.telegram.dog/codexbotzsupport) For Support/Assistance And Our [Channel](https://www.telegram.dog/codexbotz) For Updates.   
    
 Report Bugs, Give Feature Requests There..   
+
+---
 
 ### Credits
 
 - Thanks To Dan For His Awsome [Libary](https://github.com/pyrogram/pyrogram)
 - Our Support Group Members
+
+---
 
 ### Licence
 [![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](http://www.gnu.org/licenses/gpl-3.0.en.html)  
@@ -169,7 +152,8 @@ will. Specifically you can redistribute and/or modify it under the terms of the
 published by the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version. 
 
-##
+---
 
-   **Star this Repo if you Liked it ⭐⭐⭐**
+**Star this Repo if you Liked it ⭐⭐⭐**
 
+---
