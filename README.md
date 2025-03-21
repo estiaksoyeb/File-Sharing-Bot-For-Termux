@@ -1,4 +1,4 @@
-# File-sharing-Bot-For_Termux
+# File sharing Bot For Termux
 
 <p align="center">
   <a href="https://www.python.org">
@@ -79,7 +79,7 @@ We encourage all developers to contribute ideas, report bugs, and share improvem
 ```bash
 pkg update && pkg upgrade
 pkg install git python
-git clone https://github.com/YourUsername/File-Sharing-Bot
+git clone https://github.com/estiaksoyeb/File-Sharing-Bot
 cd File-Sharing-Bot
 pip install -r requirements.txt
 ```
